@@ -31,12 +31,13 @@
 
 ;;; PKCS#1 v1.5 constants
 
-(defconstant +sha256-digest-info+
+;; Use defvar to avoid SBCL DEFCONSTANT-UNEQL on array constants
+(defvar +sha256-digest-info+
   #(#x30 #x31 #x30 #x0d #x06 #x09 #x60 #x86 #x48 #x01 #x65 #x03 #x04 #x02 #x01
     #x05 #x00 #x04 #x20)
   "DER-encoded DigestInfo prefix for SHA-256.")
 
-(defconstant +sha1-digest-info+
+(defvar +sha1-digest-info+
   #(#x30 #x21 #x30 #x09 #x06 #x05 #x2b #x0e #x03 #x02 #x1a #x05 #x00 #x04 #x14)
   "DER-encoded DigestInfo prefix for SHA-1.")
 

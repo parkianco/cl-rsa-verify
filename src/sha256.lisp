@@ -5,7 +5,8 @@
 
 ;;; SHA-256 Constants
 
-(defconstant +sha256-k+
+;; Use defvar to avoid SBCL DEFCONSTANT-UNEQL on array constants
+(defvar +sha256-k+
   #(#x428a2f98 #x71374491 #xb5c0fbcf #xe9b5dba5
     #x3956c25b #x59f111f1 #x923f82a4 #xab1c5ed5
     #xd807aa98 #x12835b01 #x243185be #x550c7dc3
@@ -21,11 +22,13 @@
     #x19a4c116 #x1e376c08 #x2748774c #x34b0bcb5
     #x391c0cb3 #x4ed8aa4a #x5b9cca4f #x682e6ff3
     #x748f82ee #x78a5636f #x84c87814 #x8cc70208
-    #x90befffa #xa4506ceb #xbef9a3f7 #xc67178f2))
+    #x90befffa #xa4506ceb #xbef9a3f7 #xc67178f2)
+  "SHA256 round constants.")
 
-(defconstant +sha256-init+
+(defvar +sha256-init+
   #(#x6a09e667 #xbb67ae85 #x3c6ef372 #xa54ff53a
-    #x510e527f #x9b05688c #x1f83d9ab #x5be0cd19))
+    #x510e527f #x9b05688c #x1f83d9ab #x5be0cd19)
+  "SHA256 initial hash values.")
 
 ;;; Utility functions
 
@@ -110,8 +113,14 @@
             for t1 = (u32+ hh (sha256-sigma1 e) (sha256-ch e f g)
                            (aref +sha256-k+ i) (aref w i))
             for t2 = (u32+ (sha256-sigma0 a) (sha256-maj a b c))
-            do (setf hh g g f f e (u32+ d t1)
-                     d c c b b a a (u32+ t1 t2)))
+            do (setf hh g
+                     g f
+                     f e
+                     e (u32+ d t1)
+                     d c
+                     c b
+                     b a
+                     a (u32+ t1 t2)))
       ;; Update hash values
       (setf (aref h 0) (u32+ (aref h 0) a)
             (aref h 1) (u32+ (aref h 1) b)
