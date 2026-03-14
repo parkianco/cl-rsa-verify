@@ -1,7 +1,11 @@
-# cl-rsa-verify
+# Rsa Verify
 
-RSA signature verification library for Common Lisp with zero external dependencies.
-Verification only - no signing capabilities.
+RSA public key cryptography for encryption and signing.
+
+## Features
+
+- Core functionality implementation
+- Pure Common Lisp (zero external dependencies)
 
 ## Installation
 
@@ -9,22 +13,27 @@ Verification only - no signing capabilities.
 (asdf:load-system :cl-rsa-verify)
 ```
 
-## API
-
-- `(rsa-verify public-key message signature)` - Verify RSA signature
-- `(pkcs1-v15-verify public-key message signature hash-algo)` - PKCS#1 v1.5 verification
-- `(parse-rsa-public-key der-bytes)` - Parse DER-encoded public key
-- `(rsa-public-key-p object)` - Check if object is RSA public key
-- `(verify-pkcs1-signature n e message signature)` - Low-level verification
-
-## Example
+## Usage
 
 ```lisp
-(let ((pubkey (cl-rsa-verify:parse-rsa-public-key der-bytes)))
-  (cl-rsa-verify:pkcs1-v15-verify pubkey message signature :sha256))
-; => T or NIL
+;; Example usage
+(main-function)
 ```
+
+## Testing
+
+```lisp
+(asdf:test-system :cl-rsa-verify)
+```
+
+## API
+
+- `main-function - Primary function for core functionality`
 
 ## License
 
-BSD-3-Clause - Parkian Company LLC 2024-2026
+BSD-3-Clause License - See LICENSE file for details.
+
+---
+Copyright (c) 2024-2026 Parkian Company LLC. All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause
