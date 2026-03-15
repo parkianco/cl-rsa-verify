@@ -32,8 +32,8 @@ RSA public key cryptography for encryption and signing.
 
 ## License
 
-BSD-3-Clause License - See LICENSE file for details.
+Apache-2.0 License - See LICENSE file for details.
 
 ---
 Copyright (c) 2024-2026 Parkian Company LLC. All rights reserved.
-SPDX-License-Identifier: BSD-3-Clause
+SPDX-License-Identifier: Apache-2.0
